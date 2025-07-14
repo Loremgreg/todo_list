@@ -1,15 +1,23 @@
 import json
 
-
+todo = "todo.json" 
 
 def load_tasks():
-    pass
+    try: 
+        with open(todo, "r") as file:
+            return json.load(file)  
+    except: 
+        return {"tasks": []}
 
 def add_tasks():
     pass
 
-def save_tasks():
-    pass
+def save_tasks(tasks):
+    try:
+        with open(todo, "w") as file:
+            json.dump(tasks, file)
+    except: 
+        print("Failed to save")
 
 def view_tasks():
     pass
@@ -19,6 +27,8 @@ def mark_tasks_complete():
 
 def main():
     tasks = load_tasks()
+    print(tasks)
+
 
     while True:
         
