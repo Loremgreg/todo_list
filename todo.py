@@ -10,7 +10,14 @@ def load_tasks():
         return {"tasks": []}
 
 def add_tasks():
-    pass
+    description = input("Enter the task description: ").strip()
+    if description:
+        tasks["tasks"].append({"description": description, "complete": False})
+        save_tasks(tasks)
+        print("Task added")
+    else:
+        print("Description cannot be empty")
+
 
 def save_tasks(tasks):
     try:
@@ -27,7 +34,6 @@ def mark_tasks_complete():
 
 def main():
     tasks = load_tasks()
-    print(tasks)
 
 
     while True:
