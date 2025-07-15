@@ -9,7 +9,7 @@ def load_tasks():
     except: 
         return {"tasks": []}
 
-def add_tasks():
+def add_tasks(tasks):
     description = input("Enter the task description: ").strip()
     if description:
         tasks["tasks"].append({"description": description, "complete": False})
@@ -26,8 +26,16 @@ def save_tasks(tasks):
     except: 
         print("Failed to save")
 
-def view_tasks():
-    pass
+def view_tasks(tasks):
+    try:
+        with open(todo, "r") as file:
+            return file 
+
+    except: 
+        print("No Tasks to Show")
+
+
+
 
 def mark_tasks_complete():
     pass
