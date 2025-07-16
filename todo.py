@@ -25,21 +25,32 @@ def save_tasks(tasks):
             json.dump(tasks, file)
     except: 
         print("Failed to save")
+    
 
 def view_tasks(tasks):
+   task_list = tasks["tasks"]
+   if len(task_list) == 0:
+       print("There is no tasks.")
+   else:
+       print("Your To-Do List: ")
+
+   for idx, task in enumerate(task_list):
+       status = "[Complete]" if task["complete"] else ["Pending"]
+       print(f"{idx + 1}. {task['description']} | {status}")
+
+
+def mark_tasks_complete(tasks):
+    view_tasks(tasks)
     try:
-        with open(todo, "r") as file:
-            return file 
-
-    except: 
-        print("No Tasks to Show")
-
-
-
-
-def mark_tasks_complete():
-    pass
-
+        task_number = int(input("Enter the task number to mark as complete: ").strip())
+        if 1 <= task_number <= len(tasks):
+            tasks["tasks"][task_number - 1]["complete"] = True 
+            save_tasks(tasks)
+            print("Task marked as complete.")   
+        else:
+            print("Invalid task number.")
+    except:
+        print("Enter a valid number.")
 def main():
     tasks = load_tasks()
 
@@ -70,7 +81,8 @@ def main():
 main()
   
 
-    
+#add : Task as incompleted
+#add : Delete task
 
 
 
